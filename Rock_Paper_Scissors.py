@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap,QFont
 from PyQt5.QtCore import QTimer
-
+from random import randint
 textFont=QFont("Times",16)
 buttonFont=QFont("Arial",12)
 class Window (QWidget):
@@ -46,15 +46,30 @@ class Window (QWidget):
         self.StopButton.clicked.connect(self.stop)
         ########################################################
         self.timer=QTimer(self)
-        self.timer.setInterval(1000)
+        self.timer.setInterval(100)#en ms
         self.timer.timeout.connect(self.PlayGame)
         self.show()
+
 
     def start(self):
         self.timer.start()
 
     def PlayGame(self):
-        pass
+        self.randComputerNmb=randint(1,3)#rock,paper,sicors
+        if self.randComputerNmb == 1:
+            self.ComputerImage.setPixmap(QPixmap("images/rock.png"))
+        elif self.randComputerNmb == 2:
+            self.ComputerImage.setPixmap(QPixmap("images/paper.png"))
+        else:
+            self.ComputerImage.setPixmap(QPixmap("image/scissors.png"))
+
+        self.randPlayerNmb=randint(1,3)
+        if self.randPlayerNmb==1:
+            self.PlayerImage.setPixmap(QPixmap("images/rock.png"))
+        elif self.randPlayerNmb==2:
+            self.PlayerImage.setPixmap(QPixmap("images/paper.png"))
+        else:
+            self.PlayerImage.setPixmap(QPixmap("images/scissors.png"))
 
     def stop(self):
         self.timer.stop()
