@@ -13,7 +13,7 @@ class Window (QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(300,300,550,500)
-        self.setWindowTitle("mosso")
+        self.setWindowTitle("Rock Paper Scissors Game")
         self.UI()
 
     def UI(self):
@@ -113,7 +113,7 @@ class Window (QWidget):
         global input_usr
         global PlayerScore
         global ComputerScore
-        if (input_usr): #app wont start without user input 
+        if (input_usr): #app wont start without user input
             self.timer.stop()
             if self.randComputerNmb == self.randPlayerNmb and self.randComputerNmb !=0 and self.randPlayerNmb  != 0: # i used zeros to restart the random numbers, because if i push the stop buttons tow times in a row it increase the same score
                 msg=QMessageBox.information(self,"Information","It is a Draw")
