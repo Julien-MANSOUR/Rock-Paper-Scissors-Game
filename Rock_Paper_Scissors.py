@@ -61,7 +61,11 @@ class Window (QWidget):
         self.submitButton = QPushButton("Submit",self)
         self.submitButton.move(160,350)
         self.submitButton.clicked.connect(self.submit)
-        #########################################################
+        ##########################Signature###############################
+        signature=QLabel("Julien MANSOUR",self)
+        signature.setFont(QFont("Bold",8))
+        signature.move(400,450)
+        ##################################################################
         self.show()
 
 
@@ -104,39 +108,50 @@ class Window (QWidget):
         global ComputerScore
 
         self.timer.stop()
-        if self.randComputerNmb == self.randPlayerNmb:
+        if self.randComputerNmb == self.randPlayerNmb and self.randComputerNmb !=0 and self.randPlayerNmb  != 0: # i used zeros to restart the random numbers, because if i push the stop buttons tow times in a row it increase the same score
             msg=QMessageBox.information(self,"Information","It is a Draw")
         elif self.randComputerNmb == 1 and self.randPlayerNmb == 2:  #rock vs paper
             msg=QMessageBox.information(self,"Information","you Win !")
             PlayerScore += 1
             self.scorePlayerText.setText("Your Score : {}/{}".format(PlayerScore,self.userInput ))
             self.scorePlayerText.resize(150,30)
+            self.randComputerNmb = 0
+            self.randPlayerNmb = 0
         elif self.randComputerNmb == 1 and self.randPlayerNmb == 3:  #rock vs scissor
             msg=QMessageBox.information(self,"Information","Computer Wins !")
             ComputerScore += 1
             self.scoreComputerText.setText("Computer Score : {}/{}".format(ComputerScore,self.userInput ))
             self.scoreComputerText.resize(200,30)
+            self.randComputerNmb = 0 #restart the random numbers to avoid any kind of stop problem
+            self.randPlayerNmb = 0
         elif self.randComputerNmb == 2 and self.randPlayerNmb == 1: #paper vs rock
             msg=QMessageBox.information(self,"Information","Computer Wins !")
             ComputerScore += 1
             self.scoreComputerText.setText("Computer Score : {}".format(ComputerScore,self.userInput ))
             self.scoreComputerText.resize(200,30)
+            self.randComputerNmb = 0
+            self.randPlayerNmb = 0
         elif self.randComputerNmb == 2 and self.randPlayerNmb == 3: #paper vs scissours
             msg=QMessageBox.information(self,"Information","you Win !")
             PlayerScore += 1
             self.scorePlayerText.setText("Your Score : {}/{}".format(PlayerScore,self.userInput ))
             self.scorePlayerText.resize(150,30)
+            self.randComputerNmb = 0
+            self.randPlayerNmb = 0
         elif self.randComputerNmb == 3 and self.randPlayerNmb== 1:  #scisours vs rock
             msg=QMessageBox.information(self,"Information","you Win !")
             PlayerScore += 1
             self.scorePlayerText.setText("Your Score : {}/{}".format(PlayerScore,self.userInput ))
             self.scorePlayerText.resize(150,30)
+            self.randComputerNmb = 0
+            self.randPlayerNmb = 0
         elif  self.randComputerNmb == 3 and self.randPlayerNmb == 2: #scissors vs paper
             msg=QMessageBox.information(self,"Information","Computer Wins !")
             ComputerScore += 1
             self.scoreComputerText.setText("Computer Score : {}/{}".format(ComputerScore,self.userInput ))
             self.scoreComputerText.resize(200,30)
-
+            self.randComputerNmb = 0
+            self.randPlayerNmb = 0
         if PlayerScore == int(self.userInput)  or ComputerScore == int(self.userInput)  :
             #print("doneeeeeeee")
             if PlayerScore == int(self.userInput) :
