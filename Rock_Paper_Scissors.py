@@ -46,12 +46,22 @@ class Window (QWidget):
         self.StopButton.setFont(buttonFont)
         self.StopButton.move(250,300)
         self.StopButton.clicked.connect(self.stop)
+        self.RestartButton=QPushButton("Restart",self)
+        self.RestartButton.move(340,300)
+        self.RestartButton.clicked.connect(self.restart)
         ########################################################
         self.timer=QTimer(self)
         self.timer.setInterval(100)#en ms
         self.timer.timeout.connect(self.PlayGame)
         self.show()
 
+    def restart(self):
+        global PlayerScore
+        global ComputerScore
+        PlayerScore = 0
+        ComputerScore = 0
+        self.scoreComputerText.setText("Computer Score : {}".format(ComputerScore))
+        self.scorePlayerText.setText("Your Score : {}".format(PlayerScore))
 
     def start(self):
         self.timer.start()
@@ -107,7 +117,7 @@ class Window (QWidget):
             PlayerScore += 1
             self.scorePlayerText.setText("Your Score : {}".format(PlayerScore))
             self.scorePlayerText.resize(150,30)
-        elif  self.randComputerNmb == 3 and self.randPlayerNmb == 2: #scissors vs paper 
+        elif  self.randComputerNmb == 3 and self.randPlayerNmb == 2: #scissors vs paper
             msg=QMessageBox.information(self,"Information","Computer Wins !")
             ComputerScore += 1
             self.scoreComputerText.setText("Computer Score : {}".format(ComputerScore))
