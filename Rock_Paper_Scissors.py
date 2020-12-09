@@ -35,10 +35,29 @@ class Window (QWidget):
         self.GameImage=QLabel(self)
         self.GameImage.setPixmap(QPixmap("images/game.png"))
         self.GameImage.move(235,160)
-
-
+        ########################Image########################
+        self.StartButton=QPushButton("Start",self)
+        self.StartButton.setFont(buttonFont)
+        self.StartButton.move(160,300)
+        self.StartButton.clicked.connect(self.start)
+        self.StopButton=QPushButton("Stop",self)
+        self.StopButton.setFont(buttonFont)
+        self.StopButton.move(250,300)
+        self.StopButton.clicked.connect(self.stop)
+        ########################################################
+        self.timer=QTimer(self)
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.PlayGame)
         self.show()
 
+    def start(self):
+        self.timer.start()
+
+    def PlayGame(self):
+        pass
+
+    def stop(self):
+        self.timer.stop()
 
 
 def main():
